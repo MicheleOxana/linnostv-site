@@ -14,7 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["node", "next", "next/auth", "next/types/global"]
+
+    "types": ["node", "next", "next/image-types/global", "next-auth"],
+    "plugins": [{ "name": "next" }]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
