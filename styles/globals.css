@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg1: #0f0c29;
+  --bg2: #302b63;
+  --bg3: #24243e;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply text-white;
+  background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+  background-size: 300% 300%;
+  animation: gradient-move 20s ease infinite;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Subtle sparkle */
+.sparkle {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: .45;
+}
+
+/* Glass card */
+.card {
+  @apply bg-white/5 backdrop-blur-md rounded-2xl shadow-glow border border-white/10;
+}
+
+/* Gradient text utility */
+.grad-text {
+  background: linear-gradient(90deg, #00FF84, #4DA6FF, #A64DFF, #FF4DD8, #00FF84);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 300%;
+  animation: shimmer 10s linear infinite;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-xl font-semibold transition-transform active:scale-95;
+}
+
+.btn-primary {
+  @apply btn text-black;
+  background: linear-gradient(90deg, #00FF84, #4DA6FF, #A64DFF, #FF4DD8);
+  background-size: 200% 200%;
+  animation: shimmer 12s linear infinite;
+}
