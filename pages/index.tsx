@@ -5,8 +5,18 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const TWITCH_PARENT = process.env.NEXT_PUBLIC_TWITCH_PARENT || 'localhost'
 const TWITCH_CHANNEL = 'linnostv'
+
+const parents = (
+  process.env.NEXT_PUBLIC_TWITCH_PARENTS ||
+  process.env.NEXT_PUBLIC_TWITCH_PARENT || // fallback, se você já usava
+  'localhost'
+)
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean)
+
+const parentParams = parents.map(p => `parent=${encodeURIComponent(p)}`).join('&')
 
 const YT_CHANNEL_ID = process.env.NEXT_PUBLIC_YT_CHANNEL_ID || ''
 
@@ -266,7 +276,7 @@ export default function Home() {
           {/* player central (82% x 95% como no seu site) */}
           <main className="flex-1 flex justify-center items-center overflow-hidden relative bg-black/30 rounded-lg border border-white/10 mx-4">
             <iframe
-              src={`https://player.twitch.tv/?channel=${TWITCH_CHANNEL}&parent=${TWITCH_PARENT}`}
+               src={`https://player.twitch.tv/?channel=${TWITCH_CHANNEL}&${parentParams}`}
               height="82%"
               width="95%"
               allowFullScreen
@@ -322,7 +332,7 @@ export default function Home() {
               😻 Papo Felinno 😻
             </div>
             <iframe
-              src={`https://www.twitch.tv/embed/${TWITCH_CHANNEL}/chat?parent=${TWITCH_PARENT}`}
+              src={`https://www.twitch.tv/embed/${TWITCH_CHANNEL}/chat?${parentParams}`}
               height="100%"
               width="100%"
               className="flex-1"
