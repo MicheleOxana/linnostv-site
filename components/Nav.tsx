@@ -58,19 +58,35 @@ export default function Nav() {
             )}
 
             {/* Quando logado */}
-            {!loading && session && (
-              <div className="flex items-center gap-2 md:gap-3">
-                <span className="hidden sm:inline text-white/80 truncate max-w-[12rem] md:max-w-[16rem] text-sm md:text-base">
-                  Olá, {session.user?.name?.split(' ')[0]}
-                </span>
-                <button
-                  onClick={() => signOut()}
-                  className="rounded-xl px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-semibold bg-white/10 hover:bg-white/20 text-white transition"
-                >
-                  Sair
-                </button>
-              </div>
-            )}
+{!loading && session && (
+  <div className="flex items-center gap-3 md:gap-4">
+    {/* Avatar redondo com borda bonita */}
+    {session.user?.image && (
+      <div className="relative">
+        <Image
+          src={session.user.image}
+          alt={session.user.name || 'Avatar'}
+          width={40}
+          height={40}
+          className="rounded-full border-2 border-white/20 shadow-sm"
+        />
+      </div>
+    )}
+
+    {/* Nome da pessoa */}
+    <span className="hidden sm:inline text-white/80 truncate max-w-[10rem] md:max-w-[14rem] text-sm md:text-base">
+      Olá, {session.user?.name?.split(' ')[0]}
+    </span>
+
+    {/* Botão de sair */}
+    <button
+      onClick={() => signOut()}
+      className="rounded-xl px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-semibold bg-white/10 hover:bg-white/20 text-white transition"
+    >
+      Sair
+    </button>
+  </div>
+)}
           </div>
         </div>
       </div>
