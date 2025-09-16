@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true
+    unoptimized: true, // você pode manter isso se quiser
+    domains: ['static-cdn.jtvnw.net'], // necessário para mostrar avatar da Twitch
   }
 };
+
 module.exports = nextConfig;
+
