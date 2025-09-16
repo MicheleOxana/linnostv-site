@@ -50,7 +50,7 @@ export default function Nav() {
             {/* Login original (btn-primary) */}
             {!loading && !session && (
               <button
-                onClick={() => signIn('twitch')}
+                onClick={() => signIn('twitch', { callbackUrl: 'https://www.linnostv.live/' })}
                 className="btn-primary text-sm md:text-base px-4 md:px-5 py-2 md:py-2.5"
               >
                 Entrar com Twitch
