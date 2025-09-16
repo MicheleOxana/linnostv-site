@@ -6,7 +6,17 @@ export const authOptions: NextAuthOptions = {
   providers: [
     TwitchProvider({
       clientId: process.env.TWITCH_CLIENT_ID!,
-      clientSecret: process.env.TWITCH_CLIENT_SECRET!
+      clientSecret: process.env.TWITCH_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: [
+            'user:read:email',
+            'chat:read',
+            'chat:edit'
+            // adicione outros conforme precisar
+          ].join(' ')
+        }
+      }
     })
   ],
   callbacks: {
@@ -19,7 +29,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        (session as any).twitchId = token.twitchId
+        ;(session as any).twitchId = token.twitchId
         if (token.picture) session.user!.image = token.picture as string
       }
       return session

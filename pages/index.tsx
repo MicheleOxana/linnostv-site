@@ -4,6 +4,7 @@ import Nav from '../components/Nav'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AnimatePresence, motion } from 'framer-motion'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 const TWITCH_CHANNEL = 'linnostv'
 
@@ -87,6 +88,10 @@ export default function Home() {
     return () => clearInterval(i)
   }, [])
 
+    const { data: session, status } = useSession()
+    const loading = status === 'loading'
+
+  
   // ----------------- PIX + BENEFÍCIOS (3 por vez) -----------------
   const beneficiosSubs: readonly string[] = [
     'Farmam o DOBRO de pontos',
@@ -289,41 +294,58 @@ export default function Home() {
             </div>
 
             {/* Lower third do lado direito (vídeo flutuante) */}
-<div className="absolute -bottom-4 right-4 z-40">
-  <video
-    src="/Lowerthirds_VP9.webm"
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="w-[280px] max-w-[90vw] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] rounded-md"
-  />
+<div className="absolute bottom-2 left-4 z-40 flex gap-4">
+  <div className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl border border-white/20">
+    {viewers === 'off' ? '🚫 Live fora do ar': `🐱 ${viewers} gatinhos assistindo`}
+  </div>
+
+  <a
+    href={`https://www.twitch.tv/${TWITCH_CHANNEL}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl shadow-lg border border-green-400 hover:bg-white/10 transition"
+  >
+    😸 seguir
+  </a>
+
+  <a
+    href={`https://www.twitch.tv/subs/linnostv`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl shadow-lg border border-yellow-400 hover:bg-white/10 transition"
+  >
+    🐾 dar sub
+  </a>
+
+  {/* LOGIN / PERFIL */}
+  {!loading && !session && (
+    <button
+      onClick={() => signIn('twitch')}
+      className="px-3 py-1.5 rounded-xl border border-white/20 bg-black/60 text-white text-sm hover:bg-white/10 transition"
+    >
+      🔑 Entrar com Twitch
+    </button>
+  )}
+
+  {!loading && session && (
+    <div className="flex items-center gap-2">
+      {session.user?.image && (
+        <img
+          src={session.user.image}
+          alt={session.user?.name || 'user'}
+          className="w-7 h-7 rounded-full border border-white/20"
+        />
+      )}
+      <span className="text-sm">{session.user?.name || 'Logado'}</span>
+      <button
+        onClick={() => signOut()}
+        className="px-3 py-1.5 rounded-xl border border-white/20 bg-black/60 text-white text-sm hover:bg-white/10 transition"
+      >
+        Sair
+      </button>
+    </div>
+  )}
 </div>
-
-            {/* viewers + ações (mesma posição) */}
-            <div className="absolute bottom-2 left-4 z-40 flex gap-4">
-              <div className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl border border-white/20">
-                {viewers === 'off' ? '🚫 Live fora do ar': `🐱 ${viewers} gatinhos assistindo`}
-              </div>
-
-              <a
-                href={`https://www.twitch.tv/${TWITCH_CHANNEL}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl shadow-lg border border-green-400 hover:bg-white/10 transition"
-              >
-                😸 seguir
-              </a>
-
-              <a
-                href={`https://www.twitch.tv/subs/linnostv`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-black/60 text-white px-3 py-1 text-sm rounded-xl shadow-lg border border-yellow-400 hover:bg-white/10 transition"
-              >
-                🐾 dar sub
-              </a>
-            </div>
           </main>
 
           {/* chat à direita (25% / 300–400px como no seu) */}
