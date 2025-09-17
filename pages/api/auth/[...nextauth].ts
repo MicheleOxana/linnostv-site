@@ -3,17 +3,22 @@ import type { NextAuthOptions } from 'next-auth'
 import TwitchProvider from 'next-auth/providers/twitch'
 
 export const authOptions: NextAuthOptions = {
-  // logs na Vercel para ver qualquer problema real
   debug: true,
-
-  // PRECISA estar definido na Vercel/Production
   secret: process.env.NEXTAUTH_SECRET,
-
-  // JWT no cookie (padrão)
   session: { strategy: 'jwt' },
 
-  // NextAuth deduz cookies "Secure" a partir do NEXTAUTH_URL=https://...
-  // portanto não precisamos de cookies custom
+  cookies: {
+    sessionToken: {
+      name: '__Secure-next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: true,
+        domain: '.linnostv.live', // <<< ponto na frente (vale para www e apex)
+      },
+    },
+  },
 
   providers: [
     TwitchProvider({
@@ -51,7 +56,6 @@ export const authOptions: NextAuthOptions = {
       return session
     },
 
-    // sempre garanta retorno ao seu domínio base
     async redirect({ url, baseUrl }) {
       try { const u = new URL(url); if (u.origin === baseUrl) return url } catch {}
       return baseUrl
