@@ -217,6 +217,16 @@ export default function Sobre() {
               </p>
             </Section>
 
+            {/* Games do momento */}
+            <Section title="Games do momento" emoji="🕹️">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <li className="flex items-center gap-2"><span>⚔️</span> <span>League of Legends</span></li>
+                <li className="flex items-center gap-2"><span>🔫</span> <span>Valorant</span></li>
+                <li className="flex items-center gap-2"><span>🌀</span> <span>Hollow Knight: Silksong</span></li>
+                <li className="flex items-center gap-2"><span>🐉</span> <span>Dragon Ball Gekishin Squadra</span></li>
+                <li className="flex items-center gap-2"><span>🌍</span> <span>Albion Online</span></li>
+              </ul>
+            </Section>
 
             {/* Representatividade */}
             <Section title="Representatividade importa" emoji="✊">
@@ -224,6 +234,26 @@ export default function Sobre() {
                 Quando comecei a assistir lives, eu sentia falta de representatividade. Quase não existiam streamers pretos com grande visibilidade, e isso sempre ficou na minha cabeça.
                 Sendo preto e parte da comunidade LGBT, quero ajudar a mudar esse cenário. Mesmo que meu conteúdo não seja diretamente político, estar em lugares de visibilidade já é um ato político — principalmente para as crianças e pessoas que procuram referências como nós.
               </p>
+            </Section>
+
+            {/* Fandom Zone */}
+            <Section title="Fandom Zone" emoji="💥">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-bold text-white/95 mb-2">📺 Animes favoritos</h3>
+                  <ul className="space-y-1">
+                    <li>Hunter x Hunter</li>
+                    <li>Yu Yu Hakusho</li>
+                    <li>Cavaleiros dos Zodíaco</li>
+                    <li>Dragon Ball Z</li>
+                    <li>Bleach</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-bold text-white/95 mb-2">🍿 Filmes & Séries</h3>
+                  <p>Sou bem variado, mas minhas paixões são ficção, magia, fantasia e suspense.</p>
+                </div>
+              </div>
             </Section>
 
             {/* Missão */}
@@ -251,38 +281,6 @@ export default function Sobre() {
               <div className="text-sm text-white/80">Parcerias: <span className="font-semibold">contato@linnostv.live</span></div>
             </div>
           </aside>
-
-                      {/* Fandom Zone */}
-            <Section title="Fandom Zone" emoji="💥">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h3 className="font-bold text-white/95 mb-2">📺 Animes favoritos</h3>
-                  <ul className="space-y-1">
-                    <li>Hunter x Hunter</li>
-                    <li>Yu Yu Hakusho</li>
-                    <li>Cavaleiros dos Zodíaco</li>
-                    <li>Dragon Ball Z</li>
-                    <li>Bleach</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-white/95 mb-2">🍿 Filmes & Séries</h3>
-                  <p>Sou bem variado, mas minhas paixões são ficção, magia, fantasia e suspense.</p>
-                </div>
-              </div>
-            </Section>
-
-                        {/* Games do momento */}
-            <Section title="Games do momento" emoji="🕹️">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <li className="flex items-center gap-2"><span>⚔️</span> <span>League of Legends</span></li>
-                <li className="flex items-center gap-2"><span>🔫</span> <span>Valorant</span></li>
-                <li className="flex items-center gap-2"><span>🌀</span> <span>Hollow Knight: Silksong</span></li>
-                <li className="flex items-center gap-2"><span>🐉</span> <span>Dragon Ball Gekishin Squadra</span></li>
-                <li className="flex items-center gap-2"><span>🌍</span> <span>Albion Online</span></li>
-              </ul>
-            </Section>
-
         </div>
 
         {/* rodapé */}
