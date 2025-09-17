@@ -9,18 +9,18 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
 
   // (Opcional) Se quiser forçar o domínio do cookie:
-  // cookies: {
-  //   sessionToken: {
-  //     name: '__Secure-next-auth.session-token',
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax',
-  //       path: '/',
-  //       secure: true,
-  //       domain: 'www.linnostv.live', // ou '.linnostv.live'
-  //     },
-  //   },
-  // },
+   cookies: {
+     sessionToken: {
+       name: '__Secure-next-auth.session-token',
+       options: {
+        httpOnly: true,
+         sameSite: 'lax',
+  path: '/',
+  secure: true,
+  domain: 'www.linnostv.live', // ou '.linnostv.live'
+  },
+  },
+  },
 
   providers: [
     TwitchProvider({
