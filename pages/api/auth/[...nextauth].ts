@@ -32,7 +32,6 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-
     async session({ session, token }) {
       if (token) {
         const s = session as any
@@ -42,8 +41,6 @@ export const authOptions: NextAuthOptions = {
       }
       return session
     },
-
-    // segurança: sempre conclui no seu domínio
     async redirect({ url, baseUrl }) {
       try { const u = new URL(url); if (u.origin === baseUrl) return url } catch {}
       return baseUrl
