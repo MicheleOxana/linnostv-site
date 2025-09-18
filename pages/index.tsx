@@ -10,7 +10,7 @@ const TWITCH_CHANNEL = 'linnostv'
 const parents = (
   process.env.NEXT_PUBLIC_TWITCH_PARENTS ||
   process.env.NEXT_PUBLIC_TWITCH_PARENT || // fallback, se você já usava
-  'localhost'
+  'linnostv.live'
 )
   .split(',')
   .map(s => s.trim())
