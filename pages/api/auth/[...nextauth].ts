@@ -1,4 +1,3 @@
-// pages/api/auth/[...nextauth].ts
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import TwitchProvider from 'next-auth/providers/twitch'
 
@@ -25,14 +24,12 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         token.accessToken  = account.access_token as string | undefined
         token.refreshToken = account.refresh_token as string | undefined
-
         const nowSec = Math.floor(Date.now() / 1000)
         const expiresAtSec =
           (typeof account.expires_at === 'number' ? account.expires_at : undefined) ??
           (typeof (account as any).expires_in === 'number'
             ? nowSec + Number((account as any).expires_in)
             : undefined)
-
         if (expiresAtSec) token.expiresAt = expiresAtSec * 1000
       }
       if (profile) {
